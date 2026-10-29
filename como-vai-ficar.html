@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como vai ficar · Integração da Folha</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Integração da Folha<small>TOTVS RM ⇄ RP Info</small></a>
+    <nav class="nav">
+      <a href="index.html">Capa</a>
+      <a href="como-era.html">Como era</a>
+      <a class="active" href="como-vai-ficar.html">Como vai ficar</a>
+    </nav>
+    <button class="tool" id="speed">Velocidade 1×</button>
+    <button class="tool" id="restart">Reiniciar</button>
+  </header>
+
+  <section class="page-head tone-api">
+    <span class="kicker">Futuro</span>
+    <h1>Como vai ficar — TOTVS RM ⇄ RP Info direto por API</h1>
+    <p>Escolha o cenário e clique no fechamento da folha no TOTVS RM. A integração carrega etapa por etapa, confere tudo
+      e só envia se estiver certo. Se houver erro, o envio trava e volta para quem precisa corrigir.</p>
+  </section>
+
+  <section class="counters" id="counters"></section>
+
+  <section class="stage-wrap">
+    <div class="stage" id="stage">
+      <div class="lane tone-rm" style="grid-column:1"><div class="lane-head">TOTVS RM · calcula a folha</div></div>
+      <div class="lane tone-api" style="grid-column:2"><div class="lane-head">SERVIDOR DE INTEGRAÇÃO · API REST /api/v1</div></div>
+      <div class="lane tone-rp" style="grid-column:3"><div class="lane-head">RP INFO · contabilidade e financeiro</div></div>
+
+      <div class="card tone-rm" style="grid-area:2/1">
+        <h3><span class="mini" data-art="clockRm"></span>Apontamento do ponto</h3>
+        <p>Ponto fecha dia 25 · atestados e faltas até dia 31. A rotina do DP continua a mesma.</p>
+      </div>
+      <button class="node big tone-rm ready" data-id="fechar" style="grid-area:3/1">
+        <span class="node-icon" data-art="closeRm"></span>
+        <span class="node-body"><span class="node-title">Fechamento da folha</span>
+          <span class="node-sub">Competência 08/2026 · 17 lojas</span>
+          <span class="node-status">Clique para fechar a folha</span></span>
+      </button>
+      <div class="card tone-rm" style="grid-area:4/1">
+        <h3>Cenário da simulação</h3>
+        <div class="scenario">
+          <label><input type="radio" name="cen" value="ok" checked> Tudo certo</label>
+          <label class="bad"><input type="radio" name="cen" value="loja"> Erro: uma loja não fecha (débito ≠ crédito)</label>
+          <label class="bad"><input type="radio" name="cen" value="rubrica"> Erro: rubrica nova sem classificação</label>
+        </div>
+      </div>
+
+      <div class="card tone-api" id="pipe" style="grid-area:2/2/5/3">
+        <h3><span class="mini" data-art="server"></span>Etapas automáticas</h3>
+        <ul class="pipe">
+          <li data-k="evento"><span class="dot"></span>Recebe o aviso de folha fechada<small></small></li>
+          <li data-k="auth"><span class="dot"></span>Autentica no RM e no RP Info<small></small></li>
+          <li data-k="ler"><span class="dot"></span>Lê os lançamentos da folha<small></small></li>
+          <li data-k="cpf"><span class="dot"></span>Identifica cada pessoa pelo CPF<small></small></li>
+          <li data-k="regras"><span class="dot"></span>Aplica regras e tabelas<small></small></li>
+          <li data-k="valida"><span class="dot"></span>Valida débito = crédito por loja<small></small></li>
+          <li data-k="aprova"><span class="dot"></span>Aprovação do responsável<small></small></li>
+          <li data-k="envia"><span class="dot"></span>Envia 17 documentos<small></small></li>
+          <li data-k="confere"><span class="dot"></span>Confere e registra o histórico<small></small></li>
+        </ul>
+      </div>
+      <div class="card tone-api" style="grid-area:5/2">
+        <h3><span class="mini" data-art="history"></span>Histórico de execuções</h3>
+        <ul class="history" id="historico"><li class="empty">Nenhuma execução ainda</li></ul>
+      </div>
+
+      <div class="card tone-rp" id="cadastro" style="grid-area:2/3">
+        <h3><span class="mini" data-art="users"></span>Cadastro de funcionários</h3>
+        <p><b class="cad-n">Consulta pontual por CPF</b> · nenhuma base baixada para pasta de rede</p>
+      </div>
+      <div class="card tone-rp" id="lancamentos" style="grid-area:3/3">
+        <h3><span class="mini" data-art="ledger"></span>Lançamentos contábeis</h3>
+        <p>Um documento por loja, gravado direto pela API</p>
+        <div class="tiles" id="tiles"></div>
+      </div>
+      <div class="card tone-rp" id="conferencia" style="grid-area:4/3">
+        <h3><span class="mini" data-art="upload"></span>Conferência automática</h3>
+        <p class="conf-txt">A integração lê de volta o que foi gravado e compara com o que enviou</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span class="tone-api"><i></i>chamada de API · automática</span>
+    <span>CPFs, recibos e horários são ilustrativos · totais reais do fechamento 08/2026</span>
+  </div>
+
+  <script src="assets/engine.js"></script>
+  <script src="assets/como-vai-ficar.js"></script>
+</body>
+</html>

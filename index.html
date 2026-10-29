@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Integração da Folha · TOTVS RM ⇄ RP Info</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Integração da Folha<small>TOTVS RM ⇄ RP Info</small></a>
+    <nav class="nav">
+      <a class="active" href="index.html">Capa</a>
+      <a href="como-era.html">Como era</a>
+      <a href="como-vai-ficar.html">Como vai ficar</a>
+    </nav>
+  </header>
+
+  <section class="hero tone-api">
+    <span class="kicker">Fechamento da folha · apontamento · lançamentos</span>
+    <h1>Da planilha à integração direta por API</h1>
+    <p>Como a folha sai do sistema de folha e chega na contabilidade do RP Info hoje, e como ela vai chegar sozinha,
+      conferida, a partir do TOTVS RM.</p>
+  </section>
+
+  <section class="choices">
+    <a class="choice tone-man" href="como-era.html">
+      <div class="mini-flow hops">
+        <span class="ico" data-art="txt"></span><span class="ico" data-art="excel"></span><span class="ico" data-art="csv"></span>
+        <span class="wire"></span><span class="packet"></span>
+      </div>
+      <h2>Como era</h2>
+      <p>Domínio → TXT → planilhas → CSV → RP Info. Arquivo passando de mão em mão, conferência no olho e digitação.</p>
+      <span class="go">Ver o processo de hoje</span>
+    </a>
+    <a class="choice tone-api" href="como-vai-ficar.html">
+      <div class="mini-flow">
+        <span class="ico" data-art="rm"></span><span class="ico" data-art="server"></span><span class="ico" data-art="rp"></span>
+        <span class="wire"></span><span class="packet"></span>
+      </div>
+      <h2>Como vai ficar</h2>
+      <p>TOTVS RM → Servidor de Integração → RP Info. Sem arquivo, sem planilha: confere, trava se houver erro e registra tudo.</p>
+      <span class="go">Ver a integração</span>
+    </a>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi"><span class="from" data-n="43">0</span><span class="arrow">→</span><span class="to">0</span><p>arquivos manipulados por mês</p></div>
+    <div class="kpi"><span class="from" data-n="15">0</span><span class="arrow">→</span><span class="to">0</span><p>retrabalhos manuais por mês</p></div>
+    <div class="kpi"><span class="from" data-n="5682">0</span><span class="arrow">→</span><span class="to">0</span><p>cadastros copiados para pasta de rede</p></div>
+    <div class="kpi"><span class="from" data-n="17">0</span><span class="arrow">→</span><span class="to">1</span><p>execuções para lançar as pendências das lojas</p></div>
+  </section>
+
+  <section class="rubrica">
+    <span class="tag">O que é uma rubrica?</span>
+    <p><b>Rubrica é cada linha do holerite</b>: salário, hora extra, INSS, IRRF, vale-transporte, desconto de convênio.
+      Cada uma está ligada a uma conta contábil, e é essa ligação que transforma a folha em lançamentos no RP Info.
+      Hoje, uma rubrica nova é configurada <b>loja por loja, até 17 vezes</b>; no novo processo, <b>uma vez</b>, num cadastro.</p>
+  </section>
+
+  <script src="assets/engine.js"></script>
+  <script>
+    App.paintArt(document);
+    App.$$('.kpi .from').forEach((el, i) => setTimeout(() => App.countUp(el, 0, Number(el.dataset.n), 1200, (v) => App.fmt(Math.round(v))), 300 + i * 120));
+  </script>
+</body>
+</html>

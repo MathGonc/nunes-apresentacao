@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Como era · Integração da Folha</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Integração da Folha<small>TOTVS RM ⇄ RP Info</small></a>
+    <nav class="nav">
+      <a href="index.html">Capa</a>
+      <a class="active" href="como-era.html">Como era</a>
+      <a href="como-vai-ficar.html">Como vai ficar</a>
+    </nav>
+    <button class="tool" id="speed">Velocidade 1×</button>
+    <button class="tool" id="restart">Reiniciar</button>
+  </header>
+
+  <section class="page-head tone-man">
+    <span class="kicker">Hoje</span>
+    <h1>Como era — Domínio ⇄ RP Info por arquivos, planilhas e digitação</h1>
+    <p>Clique na etapa destacada. Cada etapa abre carregando, passo a passo, e no fim o arquivo passa para a próxima.
+      Do apontamento do ponto ao lançamento no RP Info.</p>
+  </section>
+
+  <section class="counters" id="counters"></section>
+
+  <section class="stage-wrap">
+    <div class="stage" id="stage">
+      <div class="lane tone-dom" style="grid-column:1"><div class="lane-head">DOMÍNIO · calcula a folha</div></div>
+      <div class="lane tone-man" style="grid-column:2"><div class="lane-head">TRABALHO MANUAL · arquivos e planilhas</div></div>
+      <div class="lane tone-rp" style="grid-column:3"><div class="lane-head">RP INFO · contabilidade e financeiro</div></div>
+
+      <button class="node tone-dom ready" data-id="ponto" style="grid-area:2/1">
+        <span class="node-num">1</span><span class="node-icon" data-art="clock"></span>
+        <span class="node-body"><span class="node-title">Apontamento do ponto</span>
+          <span class="node-sub">Ponto fecha dia 25 · atestados e faltas até dia 31</span>
+          <span class="node-status">Clique para iniciar</span></span>
+      </button>
+      <button class="node tone-dom locked" data-id="fechamento" style="grid-area:3/1">
+        <span class="node-num">2</span><span class="node-icon" data-art="close"></span>
+        <span class="node-body"><span class="node-title">Fechamento da folha</span>
+          <span class="node-sub">Análise do DP · rubricas novas loja por loja</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+      <button class="node tone-dom locked" data-id="exportar" style="grid-area:4/1">
+        <span class="node-num">3</span><span class="node-icon" data-art="export"></span>
+        <span class="node-body"><span class="node-title">Exportar arquivos</span>
+          <span class="node-sub">TXT da folha + 2 relatórios em Excel</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+
+      <button class="node tone-man locked" data-id="analise" style="grid-area:2/2">
+        <span class="node-num">4</span><span class="node-icon" data-art="excel"></span>
+        <span class="node-body"><span class="node-title">Conferência no Excel</span>
+          <span class="node-sub">Planilha Análise · valores conferidos no olho</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+      <button class="node tone-man locked" data-id="planilha" style="grid-area:3/2">
+        <span class="node-num">6</span><span class="node-icon" data-art="excel"></span>
+        <span class="node-body"><span class="node-title">Planilha de tratamento</span>
+          <span class="node-sub">8 consultas · código digitado à mão</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+      <button class="node tone-man locked" data-id="csv" style="grid-area:4/2">
+        <span class="node-num">7</span><span class="node-icon" data-art="csv"></span>
+        <span class="node-body"><span class="node-title">Gerar o CSV</span>
+          <span class="node-sub">Salvar, reabrir e apagar o cabeçalho à mão</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+
+      <button class="node tone-rp locked" data-id="base" style="grid-area:2/3">
+        <span class="node-num">5</span><span class="node-icon" data-art="users"></span>
+        <span class="node-body"><span class="node-title">Baixar base de funcionários</span>
+          <span class="node-sub">5.682 pessoas · 76 campos · para pasta de rede</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+      <button class="node tone-rp locked" data-id="importar" style="grid-area:3/3">
+        <span class="node-num">8</span><span class="node-icon" data-art="upload"></span>
+        <span class="node-body"><span class="node-title">Importar no RP Info</span>
+          <span class="node-sub">Ctrl+D · conferir os totais na tela</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+      <button class="node tone-rp locked" data-id="pos" style="grid-area:4/3">
+        <span class="node-num">9</span><span class="node-icon" data-art="bank"></span>
+        <span class="node-body"><span class="node-title">Pós-importação</span>
+          <span class="node-sub">Bancos, pensão e baixas, tudo à mão</span>
+          <span class="node-status">Aguardando</span></span>
+      </button>
+
+      <div class="tray" id="tray" style="grid-area:5/2">
+        <div class="tray-title"><span data-art="folder"></span>Pasta de rede · RH\Controller\01-Importação Folha</div>
+        <span class="tray-empty">nenhum arquivo ainda</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span class="tone-man"><i></i>passagem feita à mão</span>
+    <span style="--tone:#8a93a5"><i></i>passo dentro do mesmo sistema</span>
+    <span>Nomes, documentos e valores individuais são ilustrativos · totais reais do fechamento 08/2026</span>
+  </div>
+
+  <script src="assets/engine.js"></script>
+  <script src="assets/como-era.js"></script>
+</body>
+</html>
